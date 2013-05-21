@@ -6,6 +6,8 @@ strings into contextual forms.
 
 LICENSE:
 ========
+Arabtype, Copyrights 2012-2013(c) Wael El Oraiby. All rights reserved.
+
 The code is released under LGPL version 3 with the permission to statically link
 your program with the code, provided that you send me your bug fixes for any bug
 you may find in the provided code.
