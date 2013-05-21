@@ -1,31 +1,10 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<HTML>
-<HEAD>
-	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=utf-8">
-	<TITLE></TITLE>
-	<META NAME="GENERATOR" CONTENT="LibreOffice 3.5  (Linux)">
-	<META NAME="CREATED" CONTENT="0;0">
-	<META NAME="CHANGED" CONTENT="20130520;21092800">
-	<STYLE TYPE="text/css">
-	<!--
-		@page { margin: 2cm }
-		P { margin-bottom: 0.21cm }
-		PRE.western { font-family: "Liberation Serif", serif }
-		PRE.cjk { font-family: "WenQuanYi Micro Hei", monospace }
-		PRE.ctl { font-family: "Lohit Hindi", monospace }
-		A:link { so-language: zxx }
-	-->
-	</STYLE>
-</HEAD>
-<BODY LANG="en-CA" DIR="LTR">
-<PRE CLASS="western" STYLE="text-align: left"><FONT SIZE=4><U><B>Arabtype</B></U></FONT></PRE>
+<U><B>Arabtype</B></U>
 
-<PRE CLASS="western" STYLE="text-align: left">
 a small and simple implementation that transform isolated arabic utf8 character
 strings into contextual forms.
 
 Example:
-<IMG SRC="README_html_6e815e89.png" NAME="graphics1" ALIGN=LEFT WIDTH=665 HEIGHT=56 BORDER=0>
+![ScreenShot](https://raw.github.com/eloraiby/arabtype/master/example.png)
 
 
 <U><B>LICENSE:</B></U>
@@ -60,6 +39,4 @@ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
 FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
 COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
 IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</PRE>
-</BODY>
-</HTML>
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
