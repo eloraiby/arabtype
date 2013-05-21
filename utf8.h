@@ -1,20 +1,7 @@
-arabtype
-========
+#ifndef UTF8_H
+#define UTF8_H
 
-a small and simple implementation that transform isolated arabic utf8 character
-strings into contextual forms.
-
-LICENSE:
-========
-The code is released under LGPL version 3 with the permission to statically link
-your program with the code, provided that you send me your bug fixes for any bug
-you may find in the provided code.
-I intend to release the source code later under a more permessive license so your
-patch should be under an MIT license in order to make that possible.
-
------------------------------------------------------------------------
-The utf8.c file is under the following license:
-
+/*
 Copyright (c) 2008-2009 Bjoern Hoehrmann <bjoern@hoehrmann.de>
 
 See http://bjoern.hoehrmann.de/utf-8/decoder/dfa/ for details.
@@ -35,3 +22,21 @@ FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
 COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
 IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+*/
+
+#include <stdint.h>
+
+#ifdef __cplusplus
+extern "C" {
+#endif	// __cplusplus
+
+#define UTF8_ACCEPT 0
+#define UTF8_REJECT 1
+
+uint32_t decode(uint32_t* state, uint32_t* codep, uint32_t byte);
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif // UTF8_H
