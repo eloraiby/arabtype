@@ -76,7 +76,7 @@ bool is_arabic_letter(uint32_t cp)
 
 bool is_linking_type(uint32_t cp)
 {
-	if is_arabic_letter(cp)
+	if( is_arabic_letter(cp) )
 		if( arabic_forms_b[cp - ARABIC_LETTER_START][INITIAL] || arabic_forms_b[cp - ARABIC_LETTER_START][MEDIAL] )
 			return true;
 	return false;
