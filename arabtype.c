@@ -71,14 +71,12 @@ char_form	arabic_forms_b[]	=
 
 bool is_arabic_letter(uint32_t cp)
 {
-	if( cp >= ARABIC_LETTER_START && cp <=  ARABIC_LETTER_END )
-		return true;
-	return false;
+	return ( cp >= ARABIC_LETTER_START && cp <=  ARABIC_LETTER_END );
 }
 
 bool is_linking_type(uint32_t cp)
 {
-	if( cp >= ARABIC_LETTER_START && cp <=  ARABIC_LETTER_END )
+	if( is_arabic_letter(cp) )
 		if( arabic_forms_b[cp - ARABIC_LETTER_START][INITIAL] || arabic_forms_b[cp - ARABIC_LETTER_START][MEDIAL] )
 			return true;
 	return false;
