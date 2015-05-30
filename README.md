@@ -3,19 +3,25 @@
 a small and simple implementation that transform isolated arabic utf8 character
 strings into contextual forms.
 
-Example:
+Example ([Khalil Gibran](http://en.wikipedia.org/wiki/Kahlil_Gibran)'s Al-Nay):
 ![ScreenShot](https://raw.github.com/eloraiby/arabtype/master/example.png)
 
 
 <U><B>LICENSE:</B></U>
 
-Arabtype, Copyrights 2012-2013(c) Wael El Oraiby. All rights reserved.
+Arabtype, Copyrights 2012-2015(c) Wael El Oraiby. All rights reserved.
 
-The code is released under LGPL version 3 with the permission to statically link
-your program with the code, provided that you send me your bug fixes for any bug
-you may find in the provided code.
-I intend to release the source code later under a more permessive license so your
-patch should be under an MIT license in order to make that possible.
+This library is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License 3 for more details.
+
+Under Section 7 of GPL version 3, you are granted additional
+permissions described in the [GCC Runtime Library Exception](https://www.gnu.org/licenses/gcc-exception-3.1.en.html), version 3.1,
+as published by the Free Software Foundation.
+
+Roughly speaking: it means that you can statically link with the code but you are obliged
+to make open your bug fixes and/or enhancement you do to the arabtype.c code.
 
 -----------------------------------------------------------------------
 The utf8.c file is under the following license:

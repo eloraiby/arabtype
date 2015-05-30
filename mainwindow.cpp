@@ -1,3 +1,9 @@
+/*
+** Arabtype Copyright 2012-2015(c) Wael El Oraiby. All Rights Reserved
+**
+** This file is in public domain
+*/
+
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QtGui>

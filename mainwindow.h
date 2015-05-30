@@ -1,3 +1,8 @@
+/*
+** Arabtype Copyright 2012-2015(c) Wael El Oraiby. All Rights Reserved
+**
+** This file is in public domain
+*/
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
