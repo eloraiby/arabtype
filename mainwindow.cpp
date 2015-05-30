@@ -97,17 +97,30 @@ MainWindow::MainWindow(QWidget *parent) :
 	FT_Render_Mode	render_flags	= FT_RENDER_MODE_NORMAL;
 
 
-	data__	= new uchar[1024 * 256 * 4];
-	memset(data__, 0, 1024 * 256 * 4);
+	data__	= new uchar[1024 * 1024 * 4];
+	memset(data__, 0, 1024 * 1024 * 4);
 	int	col	= 1024 - 1;
 	int	line	= 100;
-	QImage	img(data__, 1024, 256, QImage::Format_RGB32);
+	QImage	img(data__, 1024, 1024, QImage::Format_RGB32);
 	// render the arabic glyphs
 	for( size_t idx = 0; idx < arabic_cp.size(); ++idx )
 	{
 		uint ch	= get_arabic_form(arabic_cp, idx);
-		if( ch == 0xA || ch == 0xC )
+		if( ch == 0xA ) {
+			line	+= 30;
+			col	= 1024 - 1;
 			continue;
+		}
+
+		if ( ch == 0xC ) {
+			continue;
+		}
+
+		if ( ch == -1 ) {
+			continue;
+		}
+
+		assert(ch != 0);
 
 		int glyph_index	= FT_Get_Char_Index(face, ch);
 		assert( glyph_index && "invalid character" );
