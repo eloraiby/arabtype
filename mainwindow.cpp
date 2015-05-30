@@ -51,6 +51,10 @@ MainWindow::MainWindow(QWidget *parent) :
 {
 	ui__->setupUi(this);
 
+	int	width	= 480;
+	int	height	= 320;
+	int	font_size	= 24;
+
 	std::ifstream	ifs("arabic_test.txt");
 	assert( ifs.is_open() );
 	std::vector<uchar>	arabic_string;
@@ -86,7 +90,7 @@ MainWindow::MainWindow(QWidget *parent) :
 	assert( !error && "unable to load font file" );
 
 	// set font size
-	error		= FT_Set_Pixel_Sizes(face, 0, 24);
+	error		= FT_Set_Pixel_Sizes(face, 0, font_size);
 	assert( !error && "Error setting font size" );
 
 	// setup glyph
@@ -97,18 +101,18 @@ MainWindow::MainWindow(QWidget *parent) :
 	FT_Render_Mode	render_flags	= FT_RENDER_MODE_NORMAL;
 
 
-	data__	= new uchar[1024 * 1024 * 4];
-	memset(data__, 0, 1024 * 1024 * 4);
-	int	col	= 1024 - 1;
-	int	line	= 100;
-	QImage	img(data__, 1024, 1024, QImage::Format_RGB32);
+	data__	= new uchar[width * height * 4];
+	memset(data__, 0, width * height * 4);
+	int	col	= width - font_size;
+	int	line	= font_size;
+	QImage	img(data__, width, height, QImage::Format_RGB32);
 	// render the arabic glyphs
 	for( size_t idx = 0; idx < arabic_cp.size(); ++idx )
 	{
 		uint ch	= get_arabic_form(arabic_cp, idx);
 		if( ch == 0xA ) {
-			line	+= 30;
-			col	= 1024 - 1;
+			line	+= font_size;
+			col	= width - font_size;
 			continue;
 		}
 
@@ -137,17 +141,16 @@ MainWindow::MainWindow(QWidget *parent) :
 		FT_BBox	box;
 		FT_Glyph_Get_CBox(glyph, FT_GLYPH_BBOX_TRUNCATE, &box);
 
-		int	temp_col	= col - (slot->advance.x >> 6);//slot->bitmap.width;
+		int	temp_col	= col - (slot->advance.x >> 6);
 
 		for( int y = 0; y < slot->bitmap.rows; y++ )
 		{
 			for( int x = 0; x < slot->bitmap.width; x++ )
 			{
 				uchar	co	= slot->bitmap.buffer[x + y * slot->bitmap.pitch];
-				if( co && x + temp_col < 1024 && x + temp_col >= 0 )
+				if( co && x + temp_col < width && x + temp_col >= 0 )
 				{
 					uint rgb = img.pixel(x + temp_col + slot->bitmap_left, y - slot->bitmap_top + line);
-
 					img.setPixel(x + temp_col + slot->bitmap_left, y - slot->bitmap_top + line, rgb | qRgb(co, co, co));
 				}
 
@@ -164,9 +167,6 @@ MainWindow::MainWindow(QWidget *parent) :
 	}
 
 
-	for( int i = 0; i < 1024; ++i )
-		//data__[i + 128 * 512 * 4 + 1]	= 0xFF;
-		img.setPixel(i, 128, 0xFF000000);
 	QPixmap	pixmap = QPixmap::fromImage(img);
 	ui__->label->setPixmap(pixmap);
 

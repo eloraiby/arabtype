@@ -16,6 +16,8 @@
 #define INITIAL		2
 #define MEDIAL		3
 
+#define UNICODE_LAM	0x644
+
 //
 // 0: isolated form
 // 1: ending form
@@ -73,10 +75,10 @@ static all_form_t arabic_forms_b[]	= {
 
 
 static inline bool is_arabic_letter(uint32_t cp)		{ return ( cp >= ARABIC_LETTER_START && cp <=  ARABIC_LETTER_END ); }
-static inline bool is_lam_alef(uint32_t cp, uint32_t next)	{ return cp == 0x644 &&
+static inline bool is_lam_alef(uint32_t cp, uint32_t next)	{ return cp == UNICODE_LAM &&
 									 is_arabic_letter(next) &&
 									 arabic_forms_b[next - ARABIC_LETTER_START][1][INITIAL] != 0; }
-static inline bool is_alef_prev_lam(uint32_t prev, uint32_t cp)	{ return prev == 0x644 &&
+static inline bool is_alef_prev_lam(uint32_t prev, uint32_t cp)	{ return prev == UNICODE_LAM &&
 									 is_arabic_letter(cp) &&
 									 arabic_forms_b[cp - ARABIC_LETTER_START][1][INITIAL] != 0; }
 static inline bool is_linking_type(uint32_t cp) {
