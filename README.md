@@ -21,7 +21,7 @@ permissions described in the [GCC Runtime Library Exception](https://www.gnu.org
 as published by the Free Software Foundation.
 
 Roughly speaking: it means that you can statically link with the code but you are obliged
-to make open your bug fixes and/or enhancement you do to the arabtype.c code.
+to make open your bug fixes and/or enhancement to the arabtype.c/arabtype.h code.
 
 -----------------------------------------------------------------------
 The utf8.c file is under the following license:
