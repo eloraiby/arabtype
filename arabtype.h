@@ -23,6 +23,13 @@
 extern "C" {
 #endif	// __cplusplus
 
+/**
+ * @brief get_presentation_form_b
+ * @param prev previous character
+ * @param next next character
+ * @param cp the current character
+ * @return 0 ignore the code point, the transformed code point otherise
+ */
 uint32_t get_presentation_form_b(uint32_t prev, uint32_t next, uint32_t cp);
 
 #ifdef __cplusplus
