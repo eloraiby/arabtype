@@ -58,7 +58,7 @@ MainWindow::MainWindow(QWidget *parent) :
 	ui__->setupUi(this);
 
 	int	width	= 480;
-	int	height	= 320;
+	int	height	= 392;
 	int	font_size	= 24;
 
 	std::ifstream	ifs("arabic_test.txt");
@@ -117,7 +117,7 @@ MainWindow::MainWindow(QWidget *parent) :
 	{
 		uint ch	= get_arabic_form(arabic_cp, idx);
 		if( ch == 0xA ) {
-			line	+= font_size;
+			line	+= font_size + 5;
 			col	= width - font_size;
 			continue;
 		}
