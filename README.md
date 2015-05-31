@@ -3,6 +3,11 @@
 A small and simple implementation that transform isolated arabic utf8 character
 strings into contextual forms useful for rendering (rendering example is provided).
 
+This is mostly suitable for lightweight UIs (embedded systems, games, media players...).
+It's worthy to note that this is far more lightweight than HarfBuzz (used by Qt/Pango...).
+Freetype 2 on the other hand lacks this functionality.
+
+
 Example ([Khalil Gibran](http://en.wikipedia.org/wiki/Kahlil_Gibran)'s Al-Nay):
 
 ![ScreenShot](https://raw.github.com/eloraiby/arabtype/master/example.png)
