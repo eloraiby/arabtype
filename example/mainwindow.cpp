@@ -13,8 +13,7 @@
 #include <string>
 #include <fstream>
 
-#include "utf8.h"
-#include "arabtype.h"
+#include "../arabtype.h"
 
 FT_Library MainWindow::ftlib__	= NULL;
 

@@ -20,11 +20,11 @@ PKGCONFIG	+= freetype2
 
 SOURCES += main.cpp\
 	mainwindow.cpp \
-    utf8.c \
-    arabtype.c
+    ../utf8.c \
+    ../arabtype.c
 
 HEADERS  += mainwindow.h \
-    utf8.h \
-    arabtype.h
+    ../utf8.h \
+    ../arabtype.h
 
 FORMS    += mainwindow.ui
