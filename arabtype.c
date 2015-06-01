@@ -101,7 +101,8 @@ static inline bool is_alef_prev_lam(uint32_t prev, uint32_t cp)	{ return prev ==
 static inline bool is_linking_type(uint32_t cp) { return is_arabic_letter(cp) && arabic_forms_b[cp - ARABIC_LETTER_START][0][MEDIAL] != 0; }
 
 
-uint32_t get_presentation_form_b(uint32_t prev, uint32_t next, uint32_t cp) {
+static uint32_t
+get_presentation_form_b_of_char(uint32_t prev, uint32_t next, uint32_t cp) {
 
 	if( !is_arabic_letter(cp) ) {
 		return cp;	/* not an Arabic letter */
@@ -129,7 +130,44 @@ uint32_t get_presentation_form_b(uint32_t prev, uint32_t next, uint32_t cp) {
 #else
 	// optimized code
 	uint32_t index	= (((is_lapl | is_arabic_letter(next)) & is_linking_type(cp)) << 1) | is_linking_type(prev);
-	uint32_t ref	= next * is_la + cp * (1 - is_la) - ARABIC_LETTER_START;
+	uint32_t ref	= next * is_la + cp * (!is_la) - ARABIC_LETTER_START;
 	return arabic_forms_b[ref][is_lapl][index];
 #endif
+}
+
+size_t
+get_presentation_form_b(size_t in_len, unsigned char* in_str, size_t out_len, uint32_t* out_cp) {
+	uint32_t codep	= 0;
+	uint32_t state	= 0;
+	uint32_t prev	= 0;
+	size_t cp_count	= out_len / sizeof(uint32_t);
+	size_t	o	= 0;
+
+	for( size_t i = 0; i < in_len && o < cp_count; ++i ) {
+		if( decode(&state, &codep, in_str[i]) == UTF8_ACCEPT ) {
+			out_cp[o]	= codep;
+			++o;
+		}
+	}
+
+	if( state != UTF8_ACCEPT ) {
+		// The string is not well-formed"
+		return 0;
+	}
+
+	cp_count	= o;
+	size_t		s	= 0;
+
+	for( o = 0; o < cp_count; ++o) {
+		uint32_t	cp	= out_cp[o];
+		uint32_t	next	= o < cp_count - 1 ? out_cp[o + 1] : 0;
+		uint32_t	tcp	= get_presentation_form_b_of_char(prev, next, cp);
+		if( tcp != (uint32_t)-1 ) {
+			out_cp[s]	= tcp;
+			++s;
+		}
+		prev	= cp;
+	}
+
+	return o;
 }

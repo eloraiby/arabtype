@@ -7,6 +7,20 @@ This is mostly suitable for lightweight UIs (embedded systems, games, media play
 It's worthy to note that this is far more lightweight than HarfBuzz (used by Qt/Pango...).
 Freetype 2 on the other hand lacks this functionality.
 
+<U><B>Usage:</B></U>
+One call will convert a utf8 string to a sequence of code points:
+
+```C
+size_t get_presentation_form_b(size_t in_len, unsigned char *in_str, size_t out_len, uint32_t* out_cp);
+```
+
+Where
+`in_len`: the input utf8 string length in bytes
+`in_str`: the input utf8 string
+`out_len`: output code point buffer size (in bytes)
+`out_cp`: output code point buffer	
+`return`: return the total number of code points transformed
+
 <U><B>Details:</B></U>
 Arabic letters have 4 forms: Isolated, Initial, Medial and Ending. An arabic letter will have one of these forms depending on the letters preceding and succeeding it: For instance take the letter ﺡ : This is the isolated form (i.e. nothing precedes nor succeeds it), if it comes at the start of a syllable it will have the initial form ( ﺣ ). If it ends a syllable it will have the ending form ( ﺢ ) and if it is in the middle of a syllable it will have the medial form ( ﺤ ).  Some even have more complicated ligature forms (such as Lam and Alef together: ﻻ ) . A utf8 arabic string usually only comprises of isolated letters from [Arabic Unicode Block](http://en.wikipedia.org/wiki/Arabic_%28Unicode_block%29). With this library you will transform it to the rendering/presentation form: [Arabic Presentation Forms B](http://en.wikipedia.org/wiki/Arabic_Presentation_Forms-B)
 

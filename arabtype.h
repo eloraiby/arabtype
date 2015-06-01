@@ -25,12 +25,13 @@ extern "C" {
 
 /**
  * @brief get_presentation_form_b
- * @param prev previous character
- * @param next next character
- * @param cp the current character
- * @return 0 ignore the code point, the transformed code point otherise
+ * @param in_len	input utf8 string length
+ * @param in_str	input utf8 string
+ * @param out_len	output code point buffer size (in bytes)
+ * @param out_cp	output code point buffer
+ * @return
  */
-uint32_t get_presentation_form_b(uint32_t prev, uint32_t next, uint32_t cp);
+size_t get_presentation_form_b(size_t in_len, unsigned char *in_str, size_t out_len, uint32_t* out_cp);
 
 #ifdef __cplusplus
 }

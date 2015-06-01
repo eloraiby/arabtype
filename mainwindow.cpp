@@ -19,38 +19,6 @@
 FT_Library MainWindow::ftlib__	= NULL;
 
 
-
-uint32_t	get_arabic_form(const std::vector<uint32_t>& code_point, uint32_t idx)
-{
-	uint	ch	= code_point[idx];
-	uint	prev	= 0;
-	uint	next	= 0;
-
-	if( idx )
-		prev	= code_point[idx - 1];
-	if( idx < code_point.size() - 1 )
-		next	= code_point[idx + 1];
-
-	return get_presentation_form_b(prev, next, ch);
-}
-
-std::vector<uint32_t> decode(const std::vector<uint8_t>& in)
-{
-	std::vector<uint>	ret;
-	uint codep	= 0;
-	uint state	= 0;
-
-	for( size_t i = 0; i < in.size(); ++i )
-	{
-		if( decode(&state, &codep, in[i]) == UTF8_ACCEPT )
-			ret.push_back(codep);
-	}
-	if( state != UTF8_ACCEPT )
-		std::cout << "The string is not well-formed" << std::endl;
-
-	return ret;
-}
-
 MainWindow::MainWindow(QWidget *parent) :
 	QMainWindow(parent),
 	ui__(new Ui::MainWindow)
@@ -75,9 +43,11 @@ MainWindow::MainWindow(QWidget *parent) :
 	std::cout << "size: " << arabic_string.size() << std::endl;
 	ifs.close();
 
-	std::vector<uint> arabic_cp	= decode(arabic_string);
 
-	for( size_t i = 0; i < arabic_cp.size(); ++i )
+	uint32_t*	arabic_cp	= new uint32_t[arabic_string.size()];
+	uint32_t	acp_size	= get_presentation_form_b(arabic_string.size(), &arabic_string[0], arabic_string.size() * sizeof(uint32_t), arabic_cp);
+
+	for( size_t i = 0; i < acp_size; ++i )
 		std::cout << "0x" << std::hex << arabic_cp[i] << std::endl;
 
 	std::cout << std::dec;
@@ -113,9 +83,10 @@ MainWindow::MainWindow(QWidget *parent) :
 	int	line	= font_size;
 	QImage	img(data__, width, height, QImage::Format_RGB32);
 	// render the arabic glyphs
-	for( size_t idx = 0; idx < arabic_cp.size(); ++idx )
+	for( size_t idx = 0; idx < acp_size; ++idx )
 	{
-		uint ch	= get_arabic_form(arabic_cp, idx);
+		uint ch	= arabic_cp[idx];
+
 		if( ch == 0xA ) {
 			line	+= font_size + 5;
 			col	= width - font_size;
@@ -172,6 +143,7 @@ MainWindow::MainWindow(QWidget *parent) :
 		FT_Done_Glyph(glyph);
 	}
 
+	delete[] arabic_cp;
 
 	QPixmap	pixmap = QPixmap::fromImage(img);
 	ui__->label->setPixmap(pixmap);
