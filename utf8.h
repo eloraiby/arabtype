@@ -1,6 +1,5 @@
 #ifndef UTF8_H
 #define UTF8_H
-
 /*
 Copyright (c) 2008-2009 Bjoern Hoehrmann <bjoern@hoehrmann.de>
 
