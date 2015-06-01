@@ -8,17 +8,26 @@ It's worthy to note that this is far more lightweight than HarfBuzz (used by Qt/
 Freetype 2 on the other hand lacks this functionality.
 
 <U><B>Usage:</B></U>
+
 One call will convert a utf8 string to a sequence of code points:
 
 ```C
-size_t get_presentation_form_b(size_t in_len, unsigned char *in_str, size_t out_len, uint32_t* out_cp);
+size_t get_presentation_form_b(size_t in_len,
+                               unsigned char *in_str,
+                               size_t out_len,
+                               uint32_t* out_cp);
 ```
 
 Where
+
 `in_len`: the input utf8 string length in bytes
+
 `in_str`: the input utf8 string
+
 `out_len`: output code point buffer size (in bytes)
+
 `out_cp`: output code point buffer	
+
 `return`: return the total number of code points transformed
 
 <U><B>Details:</B></U>
