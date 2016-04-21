@@ -84,7 +84,7 @@ static all_form_t arabic_forms_b[]	= {
 	{ {0xFEE5, 0xFEE6, 0xFEE7, 0xFEE8}, {-1, -1, 0, 0} },		// noon		(37)
 	{ {0xFEE9, 0xFEEA, 0xFEEB, 0xFEEC}, {-1, -1, 0, 0} },		// ha2		(38)
 	{ {0xFEED, 0xFEEE,      0,      0}, {-1, -1, 0, 0} },		// waw		(39)
-	{ {0xFEFF, 0xFEF0,      0,      0}, {-1, -1, 0, 0} },		// 2alif maksoura	(40)
+	{ {0xFEEF, 0xFEF0,      0,      0}, {-1, -1, 0, 0} },		// 2alif maksoura	(40)
 	{ {0xFEF1, 0xFEF2, 0xFEF3, 0xFEF4}, {-1, -1, 0, 0} },		// ya2		(41)
 };
 
